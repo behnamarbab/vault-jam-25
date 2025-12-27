@@ -70,4 +70,7 @@ Version: 0.0.3
 
 Mechanics:
 - The fade value of each object remains the same after the fade process is finished.
+- The fade process should only happen when the objects are moving on each other.
+- The buttons should not be collidable.
 
+-------------------------------

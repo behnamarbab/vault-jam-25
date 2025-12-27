@@ -25,11 +25,12 @@ current_color = 4
 
 [node name="ButtonGreen" parent="." instance=ExtResource("3_button")]
 position = Vector2(200, 550)
+button_type = 0
 target_color = 2
 
-[node name="ButtonBrown" parent="." instance=ExtResource("3_button")]
+[node name="ButtonReset" parent="." instance=ExtResource("3_button")]
 position = Vector2(500, 550)
-target_color = 6
+button_type = 1
 
 [node name="Goal" parent="." instance=ExtResource("4_goal")]
 position = Vector2(1000, 300)

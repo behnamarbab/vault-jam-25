@@ -1,0 +1,4 @@
+- Remove the collisions for the buttons
+- The buttons don't change the colors, it should do it as intended
+- When the player dies (falls off the screen or collides with an enemy), the game should restart
+- The fading only works on walking/moving of objects on each other. So, if the player stands on a platform, the platform should not fade out.

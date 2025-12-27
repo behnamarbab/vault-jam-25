@@ -33,8 +33,9 @@ func update_color():
 		sprite.modulate = color_val
 		sprite.modulate.a = current_alpha
 
-func mark_for_fading():
-	is_fading_this_frame = true
+func mark_for_fading(mover_velocity: Vector2):
+	if abs(mover_velocity.x) > 10.0:
+		is_fading_this_frame = true
 
 func fade_out_finished():
 	print("Platform faded out!")

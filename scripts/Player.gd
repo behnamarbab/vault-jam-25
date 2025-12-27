@@ -18,6 +18,10 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	# Death check: Falling
+	if position.y > 1000:
+		die()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -38,8 +42,8 @@ func _physics_process(delta):
 	# Check for collisions for color mechanic
 	check_color_collisions()
 	
-	# Process fading
-	if is_fading_this_frame:
+	# Process fading: Only if moving horizontally (walking)
+	if is_fading_this_frame and abs(velocity.x) > 10.0:
 		fade_progress += delta
 		if fade_progress >= Global.DEFAULT_FADE_TIME:
 			fade_out_finished()
@@ -66,6 +70,11 @@ func check_color_collisions():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
+		# Death check: Enemy group
+		if collider.is_in_group("enemy"):
+			die()
+			return
+
 		if collider.has_method("get_game_color"):
 			var other_color = collider.get_game_color()
 			handle_color_interaction(other_color, collider)
@@ -78,13 +87,12 @@ func handle_color_interaction(other_color: Global.GameColor, collider: Object):
 		is_fading_this_frame = true
 	elif my_order > other_order:
 		if collider.has_method("mark_for_fading"):
-			collider.mark_for_fading()
+			collider.mark_for_fading(velocity)
+
+func die():
+	print("Player died!")
+	get_tree().reload_current_scene()
 
 func fade_out_finished():
 	print("Player faded out!")
-	# Reset position and color
-	position = Vector2(100, 100) # Assuming start position
-	set_color(Global.GameColor.PURPLE)
-	fade_progress = 0.0
-	if sprite:
-		sprite.modulate.a = 1.0
+	die()
