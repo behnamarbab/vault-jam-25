@@ -1,0 +1,4 @@
+- Implement the game based on the description in @GameDesc.txt
+- Consider the developers' description in @Developers.txt
+- The game should be implemented in a way that it can be easily extended and modified
+- For the first implementation, only implement a basic version of the game with a very simple level and a few basic mechanics

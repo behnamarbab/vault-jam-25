@@ -1,0 +1,73 @@
+The name of the game is "Plat Fader"
+
+The game is a platformer where the player controls a character that can move left and right  and jump. The player must navigate through various obstacles and enemies to reach the end of the level.
+
+Game engine: Godot 4.5.1
+Programming language: GDScript
+
+Developers:
+- Descriptions in @Developers.txt
+
+------------------------------
+Version: 0.0.1
+
+Objects:
+- Colors
+    Neutral:
+    - White
+    Ordered:
+    - Yellow
+    - Green
+    - Blue
+    - Purple
+    - Red
+    - Brown
+    - Black
+- The (colored) player
+- The (colored) platforms
+- The (colored) enemies
+- The (colored) obstacles
+    - The moving obstacles
+    - The static obstacles
+- The (colored) button obstacles
+    - Change color button
+    - Other types
+- The (colored) collectibles
+    - The coins
+    - The power-ups
+- The UI
+    - The health bar
+    - The score
+    - The timer
+    - The lives
+    - The pause button
+    - The restart button
+    - The main menu button
+    - The options button
+    - The exit button
+- The background
+- The foreground
+
+Mechanics:
+- The player can move left and right and jump.
+- The player can collect coins and power-ups.
+- The player can die if they fall off the screen or if they are hit by an enemy.
+- Colors are ordered as: Yellow < Green < Blue < Purple < Red < Brown < Black.
+- When an ordered moving colored object touches another ordered colored object with a higher order, the lower ordered object is faded out.
+- When a change color button is pressed, the color of the player is changed to the next color in the order.
+- When a reset color button is pressed, the color of the player is reset to a default color.
+- When a button is pressed, it is toggled.
+- There is a finishing zone that the player must reach to win the level.
+
+-------------------------------
+Version: 0.0.2
+
+Mechanics:
+- When a fading is about to happen, the fading object fades out over time. So for instance, it takes some time (a variable, default value 4 seconds) of constant contact to fade out an object.
+
+-------------------------------
+Version: 0.0.3
+
+Mechanics:
+- The fade value of each object remains the same after the fade process is finished.
+

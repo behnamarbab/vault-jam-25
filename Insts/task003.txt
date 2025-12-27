@@ -1,0 +1,3 @@
+- Increase the jumping height to be twice the default height
+- For better evaluation, make the player's color to Purple, the base platform to Green, and the change color buttons to Green and Brown.
+- Make the buttons collidable.

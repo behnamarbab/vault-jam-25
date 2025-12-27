@@ -1,0 +1,1 @@
+- implement the mechanics of the game based on the description in @GameDesc.txt for Version 0.0.2

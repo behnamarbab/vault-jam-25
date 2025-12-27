@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/Platform.tscn" id="2_platform"]
+[ext_resource type="PackedScene" path="res://scenes/ColorButton.tscn" id="3_button"]
+[ext_resource type="PackedScene" path="res://scenes/Goal.tscn" id="4_goal"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(100, 500)
+
+[node name="Floor" parent="." instance=ExtResource("2_platform")]
+position = Vector2(576, 600)
+scale = Vector2(10, 1)
+current_color = 2
+
+[node name="Platform1" parent="." instance=ExtResource("2_platform")]
+position = Vector2(300, 450)
+current_color = 3
+
+[node name="Platform2" parent="." instance=ExtResource("2_platform")]
+position = Vector2(600, 350)
+current_color = 4
+
+[node name="ButtonGreen" parent="." instance=ExtResource("3_button")]
+position = Vector2(200, 550)
+target_color = 2
+
+[node name="ButtonBrown" parent="." instance=ExtResource("3_button")]
+position = Vector2(500, 550)
+target_color = 6
+
+[node name="Goal" parent="." instance=ExtResource("4_goal")]
+position = Vector2(1000, 300)
