@@ -1,16 +1,24 @@
 extends StaticBody2D
 
 @export var current_color: Global.GameColor = Global.GameColor.BLUE
+@export var movable: bool = false
 
 var fade_progress: float = 0.0
 var is_fading_this_frame: bool = false
+var original_position: Vector2
+var timer: float = 0.0
 
 @onready var sprite = $Sprite2D
 
 func _ready():
 	update_color()
+	original_position = position
 
 func _physics_process(delta):
+	if movable:
+		timer += delta
+		position.x = original_position.x + sin(timer * 2.0) * 100.0
+	
 	if is_fading_this_frame:
 		fade_progress += delta
 		if fade_progress >= Global.DEFAULT_FADE_TIME:

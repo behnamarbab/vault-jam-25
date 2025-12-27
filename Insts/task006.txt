@@ -1,0 +1,3 @@
+- Update the mechanics based on Version 0.0.6 of @GameDesc.txt
+- I want to prepare a formatting for the level designs. Write a small documentation for how to prepare a custom level.  
+

@@ -1,0 +1,71 @@
+{
+    "level_name": "New Formatting Test",
+    "size": [
+        1280,
+        720
+    ],
+    "objects": [
+        {
+            "type": "platform",
+            "position": [
+                9,
+                9
+            ],
+            "properties": {
+                "length": 15,
+                "color": "green"
+            }
+        },
+        {
+            "type": "player",
+            "position": [
+                2,
+                8
+            ],
+            "properties": {
+                "color": "purple"
+            }
+        },
+        {
+            "type": "platform",
+            "position": [
+                5,
+                7
+            ],
+            "properties": {
+                "length": 3,
+                "color": "blue",
+                "movable": false
+            }
+        },
+        {
+            "type": "button",
+            "position": [
+                4,
+                8
+            ],
+            "properties": {
+                "color": "green"
+            }
+        },
+        {
+            "type": "button",
+            "position": [
+                7,
+                8
+            ],
+            "properties": {
+                "color": "red",
+                "is_reset": true
+            }
+        },
+        {
+            "type": "goal",
+            "position": [
+                12,
+                5
+            ],
+            "properties": {}
+        }
+    ]
+}

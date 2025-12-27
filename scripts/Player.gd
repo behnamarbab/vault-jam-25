@@ -80,14 +80,15 @@ func check_color_collisions():
 			handle_color_interaction(other_color, collider)
 
 func handle_color_interaction(other_color: Global.GameColor, collider: Object):
-	var my_order = Global.get_color_order(current_color)
-	var other_order = Global.get_color_order(other_color)
-	
-	if other_order > my_order:
-		is_fading_this_frame = true
-	elif my_order > other_order:
+	# Version 0.0.5 Logic:
+	# Same color -> Higher order logic replaced by pure match
+	# If same color, other object fades
+	if current_color == other_color:
 		if collider.has_method("mark_for_fading"):
 			collider.mark_for_fading(velocity)
+	# If different color, player fades
+	else:
+		is_fading_this_frame = true
 
 func die():
 	print("Player died!")

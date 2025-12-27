@@ -23,6 +23,6 @@ func _on_body_entered(body):
 			body.set_color(Global.GameColor.PURPLE)
 			print("Color reset to PURPLE")
 		else:
-			var next_color = Global.get_next_color(body.current_color)
-			body.set_color(next_color)
-			print("Color changed to: ", next_color)
+			# Version 0.0.6: Direct color change
+			body.set_color(target_color)
+			print("Color changed to: ", target_color)

@@ -1,0 +1,30 @@
+I want the formatting of the levels to be like:
+{
+    "level_name": "Level #",
+    "size": [width, height],
+    "objects": [
+        ...
+    ]
+}
+
+The objects should be in the format:
+{
+    "type": "object_type",
+    "position": [x, y],
+    "properties": {
+        "property_name": "property_value"
+    }
+}
+
+The object types are:
+- player
+- platform
+- goal
+- button
+- obstacles
+
+Properties are:
+- length (if not set, default is 1)
+- height (if not set, default is 1)
+- color (if not set, default is white)
+- movable (if not set, default is false)

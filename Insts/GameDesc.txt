@@ -74,3 +74,27 @@ Mechanics:
 - The buttons should not be collidable.
 
 -------------------------------
+
+Version: 0.0.5
+
+Mechanics:
+- Update in the fading mechanics:
+    - An object (other than the player) fades, if the player on it has a same color from it.
+    - The player fades out if it touches an object with a different color from it.
+    - If the player fades out completely, the game is over.
+    - If the player loses, even when it falls of the platforms out of the scene, the game is over.
+    - When the game is over, the level restarts.
+
+-------------------------------
+
+Version: 0.0.6
+
+Mechanics:
+- Ignore the orders of the colors.
+- The color change should change the color of the player to the color of the button, not the next color in the order.
+
+Main Menu:
+- Create a main menu in which I can select the level to play.
+- Level design documentation.
+    - The format of a level should be in a proper formatting, preferably a JSON file.
+    - The different objects of the game are located in the grid of the scene.

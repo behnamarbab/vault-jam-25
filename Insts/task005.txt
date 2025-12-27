@@ -1,0 +1,1 @@
+- Update the mechanics based on Version 0.0.5 of @GameDesc.txt

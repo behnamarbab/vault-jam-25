@@ -14,6 +14,20 @@ enum GameColor {
 	BLACK
 }
 
+var selected_level_path: String = "res://levels/level1.json"
+
+const COLOR_NAME_MAP = {
+	"neutral": GameColor.NEUTRAL,
+	"white": GameColor.NEUTRAL,
+	"yellow": GameColor.YELLOW,
+	"green": GameColor.GREEN,
+	"blue": GameColor.BLUE,
+	"purple": GameColor.PURPLE,
+	"red": GameColor.RED,
+	"brown": GameColor.BROWN,
+	"black": GameColor.BLACK
+}
+
 const COLOR_VALUES = {
 	GameColor.NEUTRAL: Color.WHITE,
 	GameColor.YELLOW: Color.YELLOW,
@@ -24,6 +38,9 @@ const COLOR_VALUES = {
 	GameColor.BROWN: Color.SADDLE_BROWN,
 	GameColor.BLACK: Color.BLACK
 }
+
+func get_color_from_name(color_name: String) -> GameColor:
+	return COLOR_NAME_MAP.get(color_name.to_lower(), GameColor.NEUTRAL)
 
 const COLOR_ORDER = [
 	GameColor.YELLOW,
