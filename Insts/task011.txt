@@ -1,0 +1,16 @@
+change level 3:
+The player character must be blue.
+
+There must be two platforms with a visible gap between them.
+
+The first platform must be blue.
+
+The second platform must be green.
+
+When the player reaches the end of the first platform, that platform should gradually fade out.
+
+Because there is a gap between the platforms, the player must jump to reach the second platform.
+
+While the player is in the air, the fading effect should depend on the time spent airborne (longer time in air = more fading).
+
+When the player reaches the end of the second platform, that platform should also gradually fade out.

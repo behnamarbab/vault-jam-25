@@ -40,11 +40,23 @@ func _physics_process(delta):
 	# Reset fading flag before checking collisions
 	is_fading_this_frame = false
 	
+	# Version 0.0.9: Fade when not on a platform
+	if not is_on_floor():
+		is_fading_this_frame = true
+	
 	# Check for collisions for color mechanic
 	check_color_collisions()
 	
-	# Process fading: Only if moving horizontally (walking)
-	if is_fading_this_frame and abs(velocity.x) > 10.0:
+	# Process fading
+	# Ground: Fade based on horizontal movement
+	# Air: Fade based on vertical movement
+	var movement_trigger = false
+	if is_on_floor():
+		movement_trigger = abs(velocity.x) > 10.0
+	else:
+		movement_trigger = abs(velocity.y) > 10.0
+
+	if is_fading_this_frame and movement_trigger:
 		fade_progress += delta
 		if fade_progress >= fade_time:
 			fade_out_finished()

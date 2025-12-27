@@ -1,0 +1,9 @@
+Change level 1: 
+ - Player should be red and the platform should be red. 
+ when the player reach the end the platform should fade out. 
+ The length of the platform should be exact the player's fade time on moving on it.
+
+Change level 2:
+ - Player shoud be green and the platform should be red.
+ when the player reach the end the player should fade out.
+ The length of the platform should be exact the player's fade time on moving on it.

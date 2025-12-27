@@ -1,5 +1,5 @@
 {
-    "level_name": "Level 3: Leap of Faith",
+    "level_name": "Level 4: Leap of Faith",
     "size": [
         1920,
         1080
@@ -12,48 +12,41 @@
                 10
             ],
             "properties": {
-                "length": 10,
+                "length": 4,
                 "color": "blue"
             }
         },
         {
-            "type": "player",
+            "type": "platform",
             "position": [
-                2,
+                4,
                 9
             ],
             "properties": {
-                "color": "blue"
-            }
-        },
-        {
-            "type": "button",
-            "position": [
-                9,
-                9
-            ],
-            "properties": {
+                "length": 2,
                 "color": "green"
             }
         },
         {
             "type": "platform",
             "position": [
-                15,
-                10
+                8,
+                8
             ],
             "properties": {
-                "length": 10,
-                "color": "green"
+                "length": 1,
+                "color": "red"
             }
         },
         {
-            "type": "goal",
+            "type": "player",
             "position": [
-                23,
+                1,
                 9
             ],
-            "properties": {}
+            "properties": {
+                "color": "blue"
+            }
         }
     ]
 }
