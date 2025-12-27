@@ -8,17 +8,8 @@ const TILE_SIZE = 64
 @onready var platform_scene = preload("res://scenes/Platform.tscn")
 @onready var goal_scene = preload("res://scenes/Goal.tscn")
 @onready var button_scene = preload("res://scenes/ColorButton.tscn")
-
-enum ObjectID {
-	EMPTY = 0,
-	PLATFORM_YELLOW = 1,
-	PLATFORM_GREEN = 2,
-	PLATFORM_BLUE = 3,
-	PLAYER = 4,
-	GOAL = 5,
-	BUTTON_GREEN = 6,
-	BUTTON_RESET = 7
-}
+@onready var box_scene = preload("res://scenes/Box.tscn")
+@onready var recovery_scene = preload("res://scenes/RecoveryArea.tscn")
 
 func _ready():
 	load_level(Global.selected_level_path)
@@ -41,10 +32,12 @@ func load_level(path: String):
 		var grid_pos = obj_data.get("position", [0, 0])
 		var props = obj_data.get("properties", {})
 		
+		print("Attempting to spawn: ", type, " at grid ", grid_pos)
 		spawn_object_v2(type, grid_pos, props)
 
 func spawn_object_v2(type: String, grid_pos: Array, props: Dictionary):
 	var pos = Vector2(grid_pos[0] * TILE_SIZE, grid_pos[1] * TILE_SIZE)
+	print("Spawning: ", type, " at pixel ", pos)
 	var scene = null
 	var instance_props = {}
 	
@@ -53,23 +46,33 @@ func spawn_object_v2(type: String, grid_pos: Array, props: Dictionary):
 			scene = player_scene
 			if props.has("color"):
 				instance_props["current_color"] = Global.get_color_from_name(props["color"])
+			if props.has("fade_time"):
+				instance_props["fade_time"] = props["fade_time"]
 		"platform", "obstacles":
 			scene = platform_scene
 			if props.has("color"):
 				instance_props["current_color"] = Global.get_color_from_name(props["color"])
 			if props.has("movable"):
 				instance_props["movable"] = props["movable"]
+			if props.has("fade_time"):
+				instance_props["fade_time"] = props["fade_time"]
 		"goal":
 			scene = goal_scene
 		"button":
 			scene = button_scene
 			if props.has("color"):
 				instance_props["target_color"] = Global.get_color_from_name(props["color"])
-			# Default behavior for buttons in JSON: direct color change
-			instance_props["button_type"] = 0
-			if props.has("is_reset") and props["is_reset"]:
-				instance_props["button_type"] = 1
-
+		"box":
+			scene = box_scene
+			if props.has("color"):
+				instance_props["current_color"] = Global.get_color_from_name(props["color"])
+			if props.has("fade_time"):
+				instance_props["fade_time"] = props["fade_time"]
+		"recovery":
+			scene = recovery_scene
+			if props.has("fade_time"):
+				instance_props["fade_time"] = props["fade_time"]
+	
 	if scene:
 		var instance = create_instance(scene, pos, instance_props)
 		
@@ -80,11 +83,13 @@ func spawn_object_v2(type: String, grid_pos: Array, props: Dictionary):
 
 func create_instance(scene: PackedScene, pos: Vector2, properties: Dictionary = {}):
 	var instance = scene.instantiate()
-	add_child(instance)
-	instance.position = pos
 	
+	# Set properties BEFORE adding to the tree so _ready() can use them
 	for prop in properties:
 		if prop in instance:
 			instance.set(prop, properties[prop])
+	
+	add_child(instance)
+	instance.position = pos
 	
 	return instance

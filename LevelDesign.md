@@ -17,14 +17,15 @@ Levels are JSON objects containing metadata and a list of `objects`.
             "properties": {
                 "length": 20,
                 "color": "green",
-                "movable": false
+                "fade_time": 4.0
             }
         },
         {
-            "type": "player",
-            "position": [2, 8],
+            "type": "box",
+            "position": [5, 9],
             "properties": {
-                "color": "purple"
+                "color": "red",
+                "fade_time": 2.0
             }
         }
     ]
@@ -36,7 +37,8 @@ Levels are JSON objects containing metadata and a list of `objects`.
 - `platform`: Solid ground or floating ledges.
 - `goal`: The victory zone.
 - `button`: Interactive triggers for color changes.
-- `obstacles`: Visual or physical hazards (same as platform but usually with specific interactions).
+- `box`: Physics-based object that follows fading rules and can be pushed.
+- `recovery`: Area that restores player opacity over time.
 
 ### Properties
 | Property | Type | Default | Description |
@@ -44,8 +46,9 @@ Levels are JSON objects containing metadata and a list of `objects`.
 | `length` | float | 1 | Horizontal scale multiplier. |
 | `height` | float | 1 | Vertical scale multiplier. |
 | `color` | string | "white" | Name of the color (e.g., "green", "red"). |
-| `movable` | bool | false | If true, the object can move (specifically for platforms). |
+| `movable` | bool | false | (Platforms only) If true, the platform oscillates. |
+| `fade_time`| float | 4.0 | Duration for fade-out (platforms/boxes) or restoration (recovery areas). |
 
-## Coordinate System
-- `position`: `[x, y]` relative to the grid (1 unit = 64 pixels).
-- Scale is applied relative to the base sprite size.
+## New Mechanics
+- **Pushing Boxes**: Walking into a `box` will slide it. Boxes follow match/no-match fading rules just like platforms.
+- **Recovery Areas**: Standing in a `recovery` zone will slowly restore your visibility.

@@ -4,6 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -566.0
 
 @export var current_color: Global.GameColor = Global.GameColor.PURPLE
+@export var fade_time: float = Global.DEFAULT_FADE_TIME
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fade_progress: float = 0.0
@@ -20,7 +21,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# Death check: Falling
-	if position.y > 1000:
+	if position.y > 5000:
 		die()
 
 	# Handle jump.
@@ -45,12 +46,12 @@ func _physics_process(delta):
 	# Process fading: Only if moving horizontally (walking)
 	if is_fading_this_frame and abs(velocity.x) > 10.0:
 		fade_progress += delta
-		if fade_progress >= Global.DEFAULT_FADE_TIME:
+		if fade_progress >= fade_time:
 			fade_out_finished()
 		else:
 			# Update alpha based on progress
 			if sprite:
-				var alpha = 1.0 - (fade_progress / Global.DEFAULT_FADE_TIME)
+				var alpha = 1.0 - (fade_progress / fade_time)
 				sprite.modulate.a = alpha
 
 func update_color():
@@ -75,9 +76,21 @@ func check_color_collisions():
 			die()
 			return
 
+		# Pushing logic for boxes: Only if pushing from the side
+		if collider.is_in_group("pushable") and collider is CharacterBody2D:
+			var normal = collision.get_normal()
+			# Normal points towards the player. 
+			# If it's horizontal (abs(x) > 0.9), it's a side push.
+			if abs(normal.x) > 0.9:
+				collider.velocity.x = velocity.x * 0.5
+				collider.move_and_slide()
+
 		if collider.has_method("get_game_color"):
 			var other_color = collider.get_game_color()
 			handle_color_interaction(other_color, collider)
+		elif "current_color" in collider:
+			# Fallback for objects that might not have the method but have the property
+			handle_color_interaction(collider.current_color, collider)
 
 func handle_color_interaction(other_color: Global.GameColor, collider: Object):
 	# Version 0.0.5 Logic:

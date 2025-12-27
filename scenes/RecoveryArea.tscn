@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/RecoveryArea.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2_icon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(64, 64)
+
+[node name="RecoveryArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_area")

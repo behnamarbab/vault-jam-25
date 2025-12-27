@@ -98,3 +98,19 @@ Main Menu:
 - Level design documentation.
     - The format of a level should be in a proper formatting, preferably a JSON file.
     - The different objects of the game are located in the grid of the scene.
+
+-------------------------------
+Version: 0.0.7
+
+Mechanics:
+- There is no Reset button.
+- Whatever the button's color is, the player's color changes to that color.
+- Each object should have a customizable fading rate. (default value 4 seconds, changeable in the level design)
+
+-------------------------------
+Version: 0.0.8
+
+Mechanics:
+- There are boxes that can be pushed, and also follow the fading rules.
+- There are areas (as shown and distinguished in background) that when the player enters it, the player's fade starts returning to the default value, based on the area's fade time value. (so a full fade time of 4 seconds, will return to the default value in maximum 4 seconds if the player had fade value of close to 0)
+

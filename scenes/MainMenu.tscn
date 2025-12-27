@@ -41,15 +41,9 @@ theme_override_font_sizes/font_size = 48
 text = "Plat Fader"
 horizontal_alignment = 1
 
-[node name="Level1Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Play Level 1"
-
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/Level1Button" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
